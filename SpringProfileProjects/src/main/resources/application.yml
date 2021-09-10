@@ -1,0 +1,41 @@
+
+spring:
+  profiles:
+    active: dev
+server.port: 8585
+---
+spring:
+ config:
+    activate:
+      on-profile: prod
+ datasource:
+  url: jdbc:mysql://localhost:3306/test
+  driver-class-name: com.mysql.jdbc.Driver
+  username: root
+  password: 123
+ jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+     hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+logging:
+  level:
+    org:
+     hibernate:
+      sql: debug
+  
+---
+spring:
+  config:
+    activate:
+      on-profile:  dev
+  datasource:
+   url: jdbc:h2:mem:testdb
+   driver-class-name: org.h2.Driver 
+   username: sa
+   password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
