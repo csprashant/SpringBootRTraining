@@ -5,9 +5,7 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.List;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,7 +33,6 @@ import com.nt.dto.StudentDto;
 import com.nt.exception.StudentNotFoundException;
 import com.nt.model.Student;
 import com.nt.service.StudentService;
-
 
 
 @ExtendWith({ RestDocumentationExtension.class,SpringExtension.class})
