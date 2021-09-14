@@ -41,7 +41,7 @@ public class TestStudentRepo {
 		 Optional<Student> toBeDeletedStudent = (repo.findById(1001));
 		 repo.delete(toBeDeletedStudent.get());
 		 Optional<Student> deletedStudent = (repo.findById(1001));
-	     assertTrue(deletedStudent.isEmpty());  
+	     assertTrue(!deletedStudent.isPresent());  
 	}
 	@Test
 	public void testDeleteStudent() {

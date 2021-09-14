@@ -3,6 +3,8 @@ package com.nt.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-
 import com.nt.dto.StudentDto;
 import com.nt.exception.StudentNotFoundException;
 import com.nt.model.Student;
@@ -55,10 +56,11 @@ public class StudentServiceTest {
 	
 	@Test
 	public void testGetAllRecord() {
-		var listStudent=List.of(new Student(1,"Raj",96.36),
-								new Student(2,"Ramesh",97.36),
-								new Student(3,"Shubash",86.36),
-								new Student(4,"Kuldeep",66.36));
+		List <Student> listStudent=new ArrayList<Student>();
+		listStudent.add(new Student(1,"Raj",96.36));
+		listStudent.add(new Student(2,"Ramesh",97.36));
+	    listStudent.add(new Student(3,"Shubash",86.36));
+		listStudent.add(new Student(4,"Kuldeep",66.36));
 		Mockito.when(repo.findAll()).thenReturn(listStudent);
 		assertThat(service.getAllRecord()).isEqualTo(listStudent);
 	}

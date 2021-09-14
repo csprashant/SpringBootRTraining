@@ -5,7 +5,10 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +18,6 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
@@ -58,7 +60,7 @@ public class StudentControllerTest {
 	
 	@Test
 	public void getStudentDetailsByIDTest() throws Exception{
-		BDDMockito.given(studentService.getStudentDetailsById(Mockito.anyInt())).willReturn(studentDto);
+		BDDMockito.given(studentService.getStudentDetailsById(1)).willReturn(studentDto);
 		//mockMvc.perform(MockMvcRequestBuilders.get("/students/id").param("id", "1"))
 		// why param becuase all request mapping in controler class  ("students/{id}") are similer so it confunsed to pick which handler mehtod it should pick so
 		//we have go for @RequestParam in the controller class mehtod 
@@ -104,11 +106,11 @@ public class StudentControllerTest {
 	
 	@Test
 	public void getAllStudentTest() throws Exception {
-		List <Student> listStudent=List.of(
-						new Student(1,"Raj",96.36),
-						new Student(2,"Ramesh",97.36),
-						new Student(3,"Shubash",86.36),
-						new Student(4,"Kuldeep",66.36));
+		List <Student> listStudent=new ArrayList<Student>();
+						listStudent.add(new Student(1,"Raj",96.36));
+						listStudent.add(new Student(2,"Ramesh",97.36));
+					    listStudent.add(new Student(3,"Shubash",86.36));
+						listStudent.add(new Student(4,"Kuldeep",66.36));
 		BDDMockito.given(studentService.getAllRecord()).willReturn(listStudent);
 		mockMvc.perform(MockMvcRequestBuilders.get("/students/"))
 		                .andExpect(status().isOk())
@@ -125,7 +127,7 @@ public class StudentControllerTest {
 						.andDo(print());	
 	}
 	
-	@Test
+	/*@Test
 	public void testSaveStudentWithException() throws Exception{
 		studentDto=new StudentDto();	
 		studentDto.setId(1);
@@ -135,9 +137,9 @@ public class StudentControllerTest {
 						.accept(MediaType.APPLICATION_JSON))
 						.andExpect(status().isBadRequest())
 						.andDo(print());
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void testUpdateStudentWithException() throws Exception{
 		studentDto=new StudentDto();	
 		studentDto.setId(1);
@@ -148,7 +150,7 @@ public class StudentControllerTest {
 	        			.accept(MediaType.APPLICATION_JSON))
 	                	.andExpect(status().isBadRequest());	                	
 	                	
-	}
+	}*/
 	
 	@Test
 	public void testDeleteStudentByIdWithException() throws Exception{

@@ -39,7 +39,7 @@ public class StudentService {
 	}
 
 	public StudentDto getStudentDetailsById(Integer id) {
-		var student=repo.findById(id);
+		 Optional<Student> student = repo.findById(id);
 		if(student.isPresent()) 
 			return new StudentConvertor().modelToDto( student.get());
 		else 
@@ -47,7 +47,7 @@ public class StudentService {
 	}
 
 	public List<Student> getAllRecord() {
-		var listStudent=repo.findAll();
+		List<Student> listStudent = repo.findAll();
 		if(listStudent.size()>0)
 			return listStudent;
 		else
