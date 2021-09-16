@@ -18,11 +18,11 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -40,8 +40,8 @@ import com.nt.service.StudentService;
 @ExtendWith({ RestDocumentationExtension.class,SpringExtension.class})
 @WebMvcTest(controllers = StudentController.class)
 @AutoConfigureRestDocs(outputDir ="target/generated-snippet" )
-//@Profile({"dev","prod","test"})
-@ActiveProfiles("test")
+@Profile({"dev","prod","test"})
+//@ActiveProfiles("test")
 public class StudentControllerTest {
 
 	private MockMvc mockMvc;

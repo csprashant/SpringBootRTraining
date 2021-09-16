@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import com.nt.dto.StudentDto;
 import com.nt.exception.StudentNotFoundException;
@@ -21,7 +22,8 @@ import com.nt.model.Student;
 import com.nt.repo.StudentRepo;
 
 @SpringBootTest
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
+@Profile({"dev","prod"})
 public class StudentServiceTest {
 	
 	@Autowired

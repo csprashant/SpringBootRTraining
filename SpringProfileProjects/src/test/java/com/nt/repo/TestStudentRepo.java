@@ -14,8 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.nt.model.Student;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-//@Profile({"dev","prod"})
-@ActiveProfiles("test")
+@Profile({"dev","prod"})
+//@ActiveProfiles("test")
 public class TestStudentRepo {
 	
 	@Autowired
